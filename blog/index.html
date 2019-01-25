@@ -1,36 +1,22 @@
 ---
-# The scss file which include files from _sass/
+layout: default
+title: Blog
 ---
-@charset "utf-8";
 
-/*!
-* Pixyll - A simple, beautiful Jekyll theme that's mobile first.
-* @author John Otander <johnotander@gmail.com> (http://johnotander.com/)
-* @link https://github.com/johnotander/pixyll
-* @license MIT
-*/
+<div class="home">
 
-@import 'variables';
+  <div class="posts">
+    {% for post in paginator.posts %}
+      <div class="post py3">
+        <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
+        <a href="{{ post.url | prepend: site.baseurl }}" class="post-link"><h3 class="h2 post-title">{{ post.title }}</h3></a>
+        <p class="post-summary">
+          {{ post.content | strip_html | truncatewords: 20 }}
+           <a href="{{ post.url | prepend: site.baseurl }}">read more</a>.
+        </p>
+      </div>
+    {% endfor %}
+  </div>
 
-@import 'basscss';
-
-@import 'base';
-
-@import 'links';
-@import 'positions';
-@import 'clearfix';
-@import 'code';
-@import 'forms';
-@import 'typography';
-@import 'header';
-@import 'tables';
-@import 'animations';
-@import 'tables';
-@import 'footer';
-@import 'social-icons';
-@import 'blockquotes';
-@import 'posts';
-@import 'media-queries';
-@import 'gists';
-@import 'measure';
-@import 'pagination';
+  {% include pagination.html %}
+</div>
